@@ -18,7 +18,6 @@ function Get_Student_Info() {
             Print_Table_Of_Seats();
             for (let key in Student_Info.Info) {
                 document.getElementById(Student_Info.Info[key].Coordinate).innerHTML = Student_Info.Info[key].Name;
-                //document.getElementById(Student_Info.Info[key].Coordinate).name = Student_Info.Info[key].Group;
                 document.getElementById(Student_Info.Info[key].Coordinate).setAttribute("Group", Student_Info.Info[key].Group);
                 Student_Name_Arr = Student_Name_Arr.concat(Student_Info.Info[key].Name);
             }
@@ -58,7 +57,7 @@ function Print_Table_Of_Seats() {
     });
 }
 
-function randomHexColor() { //随机生成十六进制颜色
+function randomHexColor() { 
     return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
 }
 

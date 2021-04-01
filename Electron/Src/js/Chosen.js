@@ -19,7 +19,6 @@ var Chosen_Name;
 var i;
 var s;
 var Chosen_Student_From_Group_Arr;
-
 function Chosen_Student() {
     if (Chosen_Student_Button_State == 0) {
         Chosen_Group_Button.disabled = true;
@@ -151,10 +150,10 @@ function Chosen_Medium_Group() {
         clearInterval(Chosen_Medium_Group_t);
         Chosen_Medium_Group_t = setInterval(function () {
             Random_Math = Math.round(Math.random() * (Vertical_Group.length - 1));
-            Name.innerHTML = "第" + Random_Math + "大组";
-            Group.innerHTML = "第" + Random_Math + "大组";
+            Name.innerHTML = "第" + Number(Random_Math+1) + "大组";
+            Group.innerHTML = "第" + Number(Random_Math+1) + "大组";
             var tmpImage = new Image();
-            tmpImage.src = "http://randroca.deginx.com/Pic/Math/number-" + Random_Math + ".png";
+            tmpImage.src = "http://randroca.deginx.com/Pic/Math/number-" + Number(Random_Math+1) + ".png";
             Avatar.src = tmpImage.src;
             if (Last_Medium_Group != null) {
                 document.getElementById(Last_Medium_Group).style.backgroundColor = "";
