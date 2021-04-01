@@ -1,7 +1,7 @@
 {
     "name": "Randroca",
     "productName": "Randroca",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "一个随机点名软件",
     "author": "Jonyan",
     "main": "main.js",

@@ -6,6 +6,7 @@ const {
 const path = require('path');
 const ipc = require('electron').ipcMain;
 let Mainwindow;
+
 function createWindow() {
     // 创建浏览器窗口
     const win = new BrowserWindow({
@@ -13,10 +14,10 @@ function createWindow() {
         width: 20,
         height: 50,
         x: 0,
-        resizable:false,
-        y:screen.getPrimaryDisplay().workAreaSize.height-200,
+        resizable: false,
+        y: screen.getPrimaryDisplay().workAreaSize.height - 200,
         transparent: true,
-        skipTaskbar:true,
+        skipTaskbar: true,
         alwaysOnTop: true,
         backgroundColor: '#00000000',
         webPreferences: {
@@ -33,7 +34,7 @@ function createWindow() {
         minWidth: 1440,
         transparent: true,
         alwaysOnTop: true,
-        skipTaskbar:true,
+        skipTaskbar: true,
         backgroundColor: '#00000000',
         webPreferences: {
             nodeIntegration: true,
@@ -52,7 +53,7 @@ app.setLoginItemSettings({
     openAsHidden: true, // Boolean (可选) mac 表示以隐藏的方式启动应用。~~~~
     // path: '', String (可选) Windows - 在登录时启动的可执行文件。默认为 process.execPath.
     // args: [] String Windows - 要传递给可执行文件的命令行参数。默认为空数组。注意用引号将路径换行。
-  })
+})
 
 app.whenReady().then(() => {
     createWindow()
@@ -69,9 +70,8 @@ app.on('window-all-closed', () => {
     }
 })
 
-ipc.on('open',()=>
-{
-        Mainwindow.show();
+ipc.on('open', () => {
+    Mainwindow.show();
 })
 ipc.on('hidden', () => {
     Mainwindow.hide();
@@ -79,3 +79,19 @@ ipc.on('hidden', () => {
 ipc.on('close', () => {
     app.quit();
 })
+const gotTheLock = app.requestSingleInstanceLock()
+if (!gotTheLock) {
+    app.quit()
+} else {
+    app.on('second-instance', (event, commandLine, workingDirectory) => {
+        // 当运行第二个实例时,将会聚焦到mainWindow这个窗口
+        if (Mainwindow) {
+            if (Mainwindow.isMinimized()) Mainwindow.restore()
+            Mainwindow.focus()
+            Mainwindow.show()
+        }
+    })
+    // 创建 myWindow, 加载应用的其余部分, etc...
+    // app.on('ready', () => {
+    // })
+}
