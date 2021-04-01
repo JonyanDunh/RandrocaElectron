@@ -1,2 +1,4 @@
 Electron/dist
 Electron/node_modules
+Electron/package-lock.json
+Electron/yarn.lock
