@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html style="overflow:hidden;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+    <script>window.$ = window.jQuery = require("jquery");</script>
+    <script src="semantic/semantic.min.js"></script>
+</head>
+
+<body style="background: rgba(0, 0, 0, 0);border-radius: 8px;">
+    <div style="height: 100%;width: 100%;background-color: #fff;">
+        <div style="position: absolute;top: 5px;left: 5px;">
+            <div onclick="Close();">
+                <svg t="1616834873992" class="icon" viewBox="0 0 1025 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="5602" width="24" height="24">
+                    <path
+                        d="M513.344 0a512 512 0 1 0 0 1024 512 512 0 0 0 0-1024z m226.048 674.624l-54.528 56.896-171.52-164.928-171.392 164.928-54.592-56.896L456.576 512 287.36 349.312l54.592-56.768 171.392 164.8 171.52-164.8 54.528 56.768L570.176 512l169.216 162.624z"
+                        fill="#fb7299" p-id="5603"></path>
+                </svg>
+            </div>
+        </div>
+        <div style="text-align: center;background-color: #fff;border-radius: 8px;margin: auto;position: absolute;top: 40px;left: 40px;right: 40px;bottom: 40px;box-shadow:2px 2px 5px #9c9c9c;"
+            class="ui grid ">
+            <div class="twelve wide column ">
+                <div style="height:100%;border-radius: 8px;text-align: center;background-color:#f9f3f3;top: 1rem;margin: auto;left: 1rem;right: 1rem;bottom: 1rem;"
+                    class="ui grid container ">
+                    <div id="Table_Of_Seats" class="ui grid container">
+                    </div>
+
+                </div>
+            </div>
+            <div class="four wide column ">
+
+                <div class="ui four column grid container ">
+                    <div style="padding-top: 0rem;" class="row">
+                        <div style="margin:1em;" class="ui card container ">
+                            <div style="-webkit-app-region: drag" class="image">
+                                <img id="Avatar"
+                                    src="https://i0.hdslb.com/bfs/face/7d0680160977f485f299e831cc1bb8f652077f91.webp@128w_128h_1o.webp">
+                            </div>
+                            <div class="content">
+                                <a id="Name" class="header">Kristy</a>
+                                <div class="meta">
+                                    <span id="Group" class="date">第N组</span>
+                                </div>
+                                <div class="description">
+                                    数学成绩：
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <a>
+                                    <i class="user icon"></i>
+                                    ID：114514
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-top: 0rem;" class="row">
+                        <div class="ui container" style="width:290px;">
+                            <div class="ui  action fluid labeled input">
+                                <!-- <button disabled="disabled" id="Chosen_Count_Less_Button" disabled
+                                    onclick="Chosen_Count_Less();"
+                                    style="border-top-right-radius: 0;border-bottom-right-radius: 0;border-right: 0px;"
+                                    class="ui button teal">-</button>
+                                <input readonly="readonly" id="Chosen_Count"
+                                    style="text-align:center; border-top-left-radius: 0;border-bottom-left-radius: 0;"
+                                    value="1" type="text" placeholder="人数">
+                                <button class="ui button violet" disabled onclick="Chosen_Count_Plus();">+</button> -->
+                            </div>
+                            <div class="ui container" style="width:290px;">
+                                <button id="Chosen_Student_Button" onclick="Chosen_Student();" style="margin-top: 10px;"
+                                    class="medium ui button blue ">
+                                    随机抽取学生
+                                </button>
+                                <br>
+                                <button id="Chosen_Group_Button" onclick="Chosen_Group();" style="margin-top: 10px;"
+                                    class="medium ui button orange">
+                                    随机抽取小组
+                                </button>
+                                <button disabled onclick="Chosen_Student_From_Group()"
+                                    id="Chosen_Student_From_Group_Button" style="margin-top: 10px;"
+                                    class="medium ui button yellow">
+                                    组内抽取学生
+                                </button>
+                                <br>
+                                <button onclick="Chosen_Medium_Group()" id="Chosen_Medium_Group_Button"
+                                    style="margin-top: 10px;" class="medium ui button teal">
+                                    随机抽取大组
+                                </button>
+                                <br>
+                                <div style="margin-top: 10px;">
+                                    <div style="margin-right: 10px;" class="ui toggle checkbox">
+                                        <input id="No_Repeat" type="checkbox" checked="checked" name="public">
+                                        <label>不重复</label>
+                                    </div>
+                                    <button onclick="Reset()" class="medium ui button grey">
+                                        重置
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div style="width: 400px;" class="ui modal">
+        <div style="height:100%;margin:2em;" class="container">
+            <div class="ui form  error">
+                <div class="field">
+                    <label>请输入班级ID</label>
+                    <input type="text" name="ClassID" placeholder="xxxxxx">
+                </div>
+                <div class="field">
+                    <label>请输入班级序列号</label>
+                    <input type="text" name="License-number" placeholder="xxxx-xxxx-xxxx-xxxx">
+                </div>
+                <div class="ui error message">
+                    <div class="header">班级或序列号错误</div>
+                    <p>请输入正确信息！</p>
+                </div>
+                <button onclick="Set_ClassID(this)" class="ui button" type="submit">提交</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="ui basic modal">
+        <div class="ui icon header">
+            <i class="close icon"></i>
+            退出程序
+        </div>
+        <div class="content">
+            <p>你确定要退出本程序吗？如果不想退出，点击隐藏即可！</p>
+        </div>
+        <div class="actions">
+            <div class="ui teal basic cancel inverted button">
+                <i class="remove icon"></i>
+                隐藏
+            </div>
+            <div class="ui red ok inverted button">
+                <i class="checkmark icon"></i>
+                退出
+            </div>
+        </div>
+    </div>
+    <script src="js/Function.js"></script>
+    <script src="js/Chosen.js"></script>
+    <script src="js/Onload.js"></script>
+</body>
+
+</html>
