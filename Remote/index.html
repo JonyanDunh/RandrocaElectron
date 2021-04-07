@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+</head>
+<body>
+<script>
+    function Connect_WebSockets(){
+    var wsObj = new WebSocket("ws://background.s1.deginx.com:9999");   //建立连接
+    wsObj.onopen = function(){  //发送请求
+        alert("open");
+        wsObj.send("Hello WebSocket");
+    };
+    wsObj.onmessage = function(ev){  //获取后端响应
+        alert(ev.data);
+    };
+    wsObj.onclose = function(ev){
+        alert("close");
+    };
+    wsObj.onerror = function(ev){
+        alert("error");
+    };
+}
+</script>
+</body>
+</html>
