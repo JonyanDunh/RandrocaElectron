@@ -25,6 +25,7 @@
         }
     },
     "dependencies": {
-        "jquery": "^3.6.0"
+        "jquery": "^3.6.0",
+        "reconnecting-websocket": "^4.4.0"
     }
 }

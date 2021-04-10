@@ -39,8 +39,8 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            nodeIntegrationInWorker: true,
-            devTools: false //  禁用开发者调试工具
+            nodeIntegrationInWorker: true
+            //devTools: false //  禁用开发者调试工具
         }
     });
     // 加载index.html文件

@@ -19,6 +19,7 @@ var Chosen_Name;
 var i;
 var s;
 var Chosen_Student_From_Group_Arr;
+
 function Chosen_Student() {
     if (Chosen_Student_Button_State == 0) {
         Chosen_Group_Button.disabled = true;
@@ -42,6 +43,14 @@ function Chosen_Student() {
         Chosen_Student_Button.innerHTML = "停止";
         Chosen_Student_Button_State = 1;
     } else {
+        if (Prepare_Chosen_Student.length != 0) {
+            Clear_Color();
+            Card_Info_Change(Prepare_Chosen_Student[0]);
+            document.getElementById(Student_Info.Info[Prepare_Chosen_Student[0]].Coordinate).style.backgroundColor = "#AEE1E1";
+            document.getElementById(Student_Info.Info[Prepare_Chosen_Student[0]].Coordinate).style.color = "#fff";
+            Last_ID = Student_Info.Info[Prepare_Chosen_Student[0]].Coordinate;
+            Prepare_Chosen_Student.remove(Prepare_Chosen_Student[0]);
+        }
         No_Repeat_Arr_Add(Last_ID);
         Chosen_Student_Button_State = 0;
         Chosen_Student_Button.innerHTML = "随机抽取学生";
@@ -150,10 +159,10 @@ function Chosen_Medium_Group() {
         clearInterval(Chosen_Medium_Group_t);
         Chosen_Medium_Group_t = setInterval(function () {
             Random_Math = Math.round(Math.random() * (Vertical_Group.length - 1));
-            Name.innerHTML = "第" + Number(Random_Math+1) + "大组";
-            Group.innerHTML = "第" + Number(Random_Math+1) + "大组";
+            Name.innerHTML = "第" + Number(Random_Math + 1) + "大组";
+            Group.innerHTML = "第" + Number(Random_Math + 1) + "大组";
             var tmpImage = new Image();
-            tmpImage.src = "http://randroca.deginx.com/Pic/Math/number-" + Number(Random_Math+1) + ".png";
+            tmpImage.src = "http://randroca.deginx.com/Pic/Math/number-" + Number(Random_Math + 1) + ".png";
             Avatar.src = tmpImage.src;
             if (Last_Medium_Group != null) {
                 document.getElementById(Last_Medium_Group).style.backgroundColor = "";

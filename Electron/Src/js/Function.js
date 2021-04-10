@@ -57,7 +57,7 @@ function Print_Table_Of_Seats() {
     });
 }
 
-function randomHexColor() { 
+function randomHexColor() {
     return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
 }
 
@@ -167,3 +167,15 @@ function Close() {
 function Reset() {
     No_Repeat_Group_Arr = [];
 }
+Array.prototype.indexOf = function (val) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == val) return i;
+    }
+    return -1;
+};
+Array.prototype.remove = function (val) {
+    var index = this.indexOf(val);
+    if (index > -1) {
+        this.splice(index, 1);
+    }
+};

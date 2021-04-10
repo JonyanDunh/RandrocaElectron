@@ -19,6 +19,33 @@
     var Open_State = false;
     const open = document.querySelector("#open")
     const ipc = require('electron').ipcRenderer
+    const ReconnectingWebSocket = require('reconnecting-websocket');
+    var Prepare_Chosen_Student;
+    const options = {
+        maxReconnectionDelay: 0
+    };
+    var ws = new ReconnectingWebSocket("ws://websocket.deginx.com:10086", [], options);
+    //申请一个WebSocket对象，参数是服务端地址，同http协议使用http://开头一样，WebSocket协议的url使用ws://开头，另外安全的WebSocket协议使用wss://开头
+    ws.onopen = function () {
+        //当WebSocket创建成功时，触发onopen事件
+        ws.send('{ "uuid": "a5ca75d8-e5ca-49d0-9d54-318e6c91ec95", "key":"WUN:q,#:g)2`", "group": "randroca", "action": "none"}'); //将消息发送到服务端
+    }
+    ws.onmessage = function (e) {
+        //当客户端收到服务端发来的消息时，触发onmessage事件，参数e.data包含server传递过来的数据
+        content = JSON.parse(e.data)
+        actions = JSON.parse(Buffer(content.content, 'base64').toString())
+        switch (actions.action) {
+            case "hidden":
+                ipc.send('hidden');
+                Open_State = false;
+                break;
+            case "open":
+                ipc.send('open');
+                Open_State = true;
+                break;
+        }
+    }
+
     open.onclick = () => {
         if (!Open_State) {
             ipc.send('open');
