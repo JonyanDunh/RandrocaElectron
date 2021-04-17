@@ -11,9 +11,9 @@ function createWindow() {
     // 创建浏览器窗口
     const win = new BrowserWindow({
         frame: false,
-        width: 20,
+        width: 50,
         height: 50,
-        x: 0,
+        x: 10,
         resizable: false,
         y: screen.getPrimaryDisplay().workAreaSize.height - 200,
         transparent: true,
@@ -23,8 +23,8 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
-            nodeIntegrationInWorker: true,
-            devTools: false //  禁用开发者调试工具
+            nodeIntegrationInWorker: true
+                //devTools: false //  禁用开发者调试工具
         }
     });
     Mainwindow = new BrowserWindow({
@@ -40,7 +40,7 @@ function createWindow() {
             nodeIntegration: true,
             contextIsolation: false,
             nodeIntegrationInWorker: true
-            //devTools: false //  禁用开发者调试工具
+                //devTools: false //  禁用开发者调试工具
         }
     });
     // 加载index.html文件
@@ -84,14 +84,14 @@ if (!gotTheLock) {
     app.quit()
 } else {
     app.on('second-instance', (event, commandLine, workingDirectory) => {
-        // 当运行第二个实例时,将会聚焦到mainWindow这个窗口
-        if (Mainwindow) {
-            if (Mainwindow.isMinimized()) Mainwindow.restore()
-            Mainwindow.focus()
-            Mainwindow.show()
-        }
-    })
-    // 创建 myWindow, 加载应用的其余部分, etc...
-    // app.on('ready', () => {
-    // })
+            // 当运行第二个实例时,将会聚焦到mainWindow这个窗口
+            if (Mainwindow) {
+                if (Mainwindow.isMinimized()) Mainwindow.restore()
+                Mainwindow.focus()
+                Mainwindow.show()
+            }
+        })
+        // 创建 myWindow, 加载应用的其余部分, etc...
+        // app.on('ready', () => {
+        // })
 }

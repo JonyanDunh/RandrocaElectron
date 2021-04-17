@@ -1,6 +1,6 @@
 var Student_Info; //学生信息对象
 var Student_Name_Arr = []; //学生姓名数组
-var Vertical_Group = new Array(2, 2, 2, 2, 2);
+var Vertical_Group = [];
 var Column_Count; //座位表列数
 var Row_Count; //座位表行数
 var Group_Count; //座位表行数
@@ -9,9 +9,10 @@ const ipc = require('electron').ipcRenderer;
 function Get_Student_Info() {
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
-    xhr.addEventListener("readystatechange", function () {
+    xhr.addEventListener("readystatechange", function() {
         if (this.readyState === 4) {
             Student_Info = JSON.parse(this.responseText);
+            Vertical_Group = Student_Info.Vertical_Group;
             Column_Count = Student_Info.Column;
             Row_Count = Student_Info.Row;
             Group_Count = Student_Info.Group;
@@ -24,7 +25,7 @@ function Get_Student_Info() {
         }
     });
 
-    xhr.open("GET", "https://randroca.deginx.com/api/Get_Info/");
+    xhr.open("GET", "https://www.deginx.com/Randroca/GetInfo/class_16");
 
     xhr.send();
 }
@@ -32,14 +33,14 @@ function Get_Student_Info() {
 function Print_Table_Of_Seats() {
 
     var column = 0;
-    Vertical_Group.forEach(function (value, index) {
+    Vertical_Group.forEach(function(value, index) {
         column += value;
     });
     var Column_Id = 0;
-    Vertical_Group.forEach(function (value, index) {
+    Vertical_Group.forEach(function(value, index) {
         Table_Of_Seats.innerHTML += '\
         <div  style="height:100%;width:' + toPercent((1 / column) * value) + ' !important;" class="wide column">\
-        <div style="border-radius: 8px;text-align: center;top: 1rem;margin: auto;position: absolute;left: 1rem;right: 1rem;bottom: 0rem;" id="Medium_Group_' + index + '" class="ui grid ">\
+        <div style="border-radius: 8px;text-align: center;top: 1rem;margin: auto;position: absolute;left: 0.5rem;right: 0.5rem;bottom: 0rem;" id="Medium_Group_' + index + '" class="ui grid ">\
         </div>\
         </div>';
         for (i = 0; i < value; i++) {
@@ -154,10 +155,10 @@ function Close() {
     $('.ui.basic.modal')
         .modal({
             closable: false,
-            onDeny: function () {
+            onDeny: function() {
                 ipc.send('hidden');
             },
-            onApprove: function () {
+            onApprove: function() {
                 ipc.send('close');
             }
         })
@@ -167,13 +168,13 @@ function Close() {
 function Reset() {
     No_Repeat_Group_Arr = [];
 }
-Array.prototype.indexOf = function (val) {
+Array.prototype.indexOf = function(val) {
     for (var i = 0; i < this.length; i++) {
         if (this[i] == val) return i;
     }
     return -1;
 };
-Array.prototype.remove = function (val) {
+Array.prototype.remove = function(val) {
     var index = this.indexOf(val);
     if (index > -1) {
         this.splice(index, 1);
